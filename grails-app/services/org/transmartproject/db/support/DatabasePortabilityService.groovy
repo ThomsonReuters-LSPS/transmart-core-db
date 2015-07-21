@@ -145,6 +145,13 @@ class DatabasePortabilityService {
         )
     }
 
+    String toChar(String bigIntField){
+        runCorrectImplementation(
+                {" CAST($bigIntField as character varying)"}, //Postgres
+                {" to_char($bigIntField)"}  //Oracle
+        )
+    }
+
     /**
      * Convert pagination limits for use with queries transformed with the
      * methods available in this class.
